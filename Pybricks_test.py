@@ -5,5 +5,9 @@ from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 
 hub = PrimeHub()
-hub.speaker.bep(500)
-print("hi")
+
+def beep():
+    hub.speaker.beep(500)
+    print("hi")
+
+
