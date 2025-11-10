@@ -1,0 +1,11 @@
+from pybricks.hubs import PrimeHub
+from pybricks.pupdevices import Motor
+from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
+from pybricks.robotics import DriveBase, hub_menu
+from pybricks.tools import wait
+from gear_launch import gyro_straight, gyro_turn, array, mission_code, beep
+selected = hub_menu("H", "S", "L")
+
+if selected == "H":
+    beep()
+    mission_code()
