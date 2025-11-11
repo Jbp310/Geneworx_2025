@@ -13,6 +13,10 @@ left_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)
 
 robot = DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=110)
+
+def beep():
+    hub.speaker.beep(500)
+    print("hi")
 def i2m(inches):
     """Convert inches to mm for DriveBase."""
     return inches * 25.4
@@ -133,11 +137,13 @@ def array(option1 ,direction1, distance1,turn_angle1,correction1,speed1):
         x = x + 1
     
 #run function
-array(
-option1 =    [1,3,3,3,3,3,3,2,1,3,1],
-direction1 = [0,0,0,0,0,0,0,"left",0,0,0], 
-distance1 =  [350,0,0,0,0,0,0,0,190,0,500],
-turn_angle1 =[0,-690,690,-690,690,-690,900,48,0,-900,0],
-correction1 =[3,0,0,0,0,0,0,3,3,0,3],
-speed1=      [800,2500,1600,1600,1600,1600,1600,800,800,1600,-800],
-)
+def mission_code():
+    array(
+    option1 =    [1,3,3,3,3,3,3,2,1,3,1],
+    direction1 = [0,0,0,0,0,0,0,"left",0,0,0], 
+    distance1 =  [350,0,0,0,0,0,0,0,190,0,500],
+    turn_angle1 =[0,-690,690,-690,690,-690,900,48,0,-900,0],
+    correction1 =[3,0,0,0,0,0,0,3,3,0,3],
+    speed1=      [800,2500,1600,1600,1600,1600,1600,800,800,1600,-800],
+    )
+mission_code()
