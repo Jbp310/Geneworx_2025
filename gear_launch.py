@@ -87,14 +87,14 @@ def gyro_turn(direction, turn_angle=90, max_speed=300, correction=4.0):
             break
 
         # Proportional speed
-        speed = max(min(error * correction, max_speed), 80)
+        speedy = max(min(error * correction, max_speed), 200)
     
         if direction == "left":
-            left_motor.run(-speed)
-            right_motor.run(speed)
+            left_motor.run(-speedy)
+            right_motor.run(speedy)
         elif direction == "right":
-            left_motor.run(speed)
-            right_motor.run(-speed)
+            left_motor.run(speedy)
+            right_motor.run(-speedy)
 
         wait(10)
 
@@ -117,7 +117,7 @@ speed1 = []
 def array(option1 ,direction1, distance1,turn_angle1,correction1,speed1):
     #option 1 is straight and option 2 is turn
     
-    array_length = len(option1)
+    array_length = len(option1) 
     x = 0
     while True: 
         if array_length == x :
@@ -137,13 +137,23 @@ def array(option1 ,direction1, distance1,turn_angle1,correction1,speed1):
         x = x + 1
     
 #run function
-def mission_code():
+def mission_code_right_side():
     array(
     option1 =    [1,3,3,3,3,3,3,2,1,3,1],
     direction1 = [0,0,0,0,0,0,0,"left",0,0,0], 
     distance1 =  [350,0,0,0,0,0,0,0,190,0,500],
     turn_angle1 =[0,-690,690,-690,690,-690,900,48,0,-900,0],
     correction1 =[3,0,0,0,0,0,0,3,3,0,3],
-    speed1=      [800,2500,1600,1600,1600,1600,1600,800,800,1600,-800],
+    speed1=      [800,2500,1600,1600,1600,1600,1600,2000,800,1600,-800],
     )
-mission_code()
+def mission_code_left_side():
+    array(
+    option1=     [1,3,1,3],
+    direction1 = [0,0,0,0],
+    distance1 =  [320,0,500,0],
+    turn_angle1 =[0,-200,0,200],
+    correction1= [0.2,0,0.2,0],
+    speed1 =     [800,1000,-800,800],
+    )
+
+mission_code_left_side()

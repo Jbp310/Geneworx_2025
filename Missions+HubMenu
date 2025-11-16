@@ -3,9 +3,12 @@ from pybricks.pupdevices import Motor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, hub_menu
-from gear_launch import gyro_straight, gyro_turn, array, mission_code, beep
+from gear_launch import gyro_straight, gyro_turn, array, mission_code_right_side, beep, mission_code_left_side
 selected = hub_menu("H", "S", "L")
 
 if selected == "H":
     beep()
-    mission_code()
+    mission_code_right_side()
+if selected == "S":
+    beep()
+    mission_code_left_side()
