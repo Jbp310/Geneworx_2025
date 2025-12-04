@@ -26,7 +26,10 @@ def beep():
 def i2m(inches):
     """Convert inches to mm for DriveBase."""
     return inches * 25.4
-
+def gyro_reset():
+    current = hub.imu.heading()
+    robot.turn(angle_adjust(-current))
+    print("ADJUSTED")
 def gyro_straight(distance, base_speed=300, gain=3.0):
     # Convert mm -> motor degrees (≈ 360° per 56 mm wheel)
     wheel_circ = 56 * 3.1416
@@ -38,6 +41,7 @@ def gyro_straight(distance, base_speed=300, gain=3.0):
     while True:
         avg_angle = (abs(left_motor.angle()) + abs(right_motor.angle())) / 2
         if avg_angle >= target_angle:
+            gyro_reset()
             break
 
 
@@ -93,7 +97,7 @@ def gyro_turn(direction, turn_angle=90, max_speed=300, correction=4.0):
             break
 
         # Proportional speed
-        speedy = max(min(error * correction, max_speed), 200)
+        speedy = max(min(error * correction, max_speed), 80)
     
         if direction == "left":
             left_motor.run(-speedy)
