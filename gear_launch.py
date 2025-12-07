@@ -97,7 +97,7 @@ def gyro_turn(direction, turn_angle=90, max_speed=300, correction=4.0):
             break
 
         # Proportional speed
-        speedy = max(min(error * correction, max_speed), 80)
+        speedy = max(min(error * correction, max_speed), 120)
     
         if direction == "left":
             left_motor.run(-speedy)
@@ -174,4 +174,13 @@ def mission_code_left_side_2():
     correction1= [3,3],
     speed1 =     [800,-800],
     )
-
+def mission_code_left_side_3():
+    array(
+    option1=     [1,2,1,3,1,2,1,2,1],
+    direction1 = [0,"left",0,0,0,"left",0,"right",0],
+    distance1 =  [685,0,200,0,150,0,50,0,400],
+    turn_angle1 =[0,45,0,600,0,90,0,90,0],
+    correction1= [3,3,3,0,3,3,3,3,3],
+    speed1 =     [800,2000,800,800,-800,2000,800,2000,800],
+    )
+mission_code_left_side_3()
