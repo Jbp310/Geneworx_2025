@@ -125,7 +125,7 @@ turn_angle1 = []
 correction1 = []
 speed1 = []
 def array(option1 ,direction1, distance1,turn_angle1,correction1,speed1):
-    #option 1 is straight and option 2 is turn
+    #option 1 is straight and option 2 is turn, option 3 is attachment motor
     
     array_length = len(option1) 
     x = 0
