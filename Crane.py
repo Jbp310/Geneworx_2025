@@ -11,15 +11,19 @@ right = Motor(Port.B, positive_direction = Direction.CLOCKWISE)
 move = DriveBase(left, right, 54, 65)
 
 def agl(degres):
-    turn = (degres * 1.234)
+    turn = (degres * 1.706)
     return int(turn)
 def i2m(inches) :
     milimeters = (inches * 25.4)
     return int(milimeters)
 
-move.straight(i2m(3))
+x = 0
+
+move.straight(i2m(8))
 move.turn(agl(-92))
-move.straight(i2m(18))
-move.turn(agl(15))
-move.straight(i2m(2))
-move.turn(agl(-15))
+move.straight(i2m(28.5))
+move.turn(agl(-30))
+while x < 9:
+    move.straight(i2m(-2))
+    move.straight(i2m(2))
+    x = x + 1
