@@ -19,7 +19,7 @@ def i2m(inches) :
 
 move.straight(i2m(3))
 move.turn(agl(-92))
-move.straight(i2m(15))
-move.turn(agl(30))
-move.straight(i2m(5))
-move.turn(agl(-30))
+move.straight(i2m(18))
+move.turn(agl(15))
+move.straight(i2m(2))
+move.turn(agl(-15))
