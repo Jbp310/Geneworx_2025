@@ -4,32 +4,28 @@ from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait
 
-# -------------------------------
-# HUB AND MOTORS
-# -------------------------------
-def angle_adjust(angle):
-    if angle > 0:
-        return angle - angle/90 * 15
-    elif angle < 0:
-        return angle+ angle/90 * 15
+
+
     
 hub = PrimeHub()
 attachment_motor = Motor(Port.F, positive_direction=Direction.CLOCKWISE)
 left_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)
-
 robot = DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=110)
-
+def angle_adjust(angle):
+    if angle > 0:
+        return angle - angle/90 * 15
+    elif angle < 0:
+        return angle+ angle/90 * 15
 def beep():
     hub.speaker.beep(500)
     print("hi")
 def i2m(inches):
     """Convert inches to mm for DriveBase."""
     return inches * 25.4
-def gyro_reset():
+def gyro_reset_to_straight():
     current = hub.imu.heading()
     robot.turn(angle_adjust(-current))
-    print("ADJUSTED")
 def gyro_straight(distance, base_speed=300, gain=3.0):
     # Convert mm -> motor degrees (≈ 360° per 56 mm wheel)
     wheel_circ = 56 * 3.1416
@@ -147,40 +143,3 @@ def array(option1 ,direction1, distance1,turn_angle1,correction1,speed1):
         x = x + 1
     
 #run function
-def mission_code_right_side_1():
-    array(
-    option1 =    [1,3,3,3,3,3,3,2,1,3,1],
-    direction1 = [0,0,0,0,0,0,0,"left",0,0,0], 
-    distance1 =  [350,0,0,0,0,0,0,0,190,0,500],
-    turn_angle1 =[0,-690,690,-690,690,-690,900,48,0,-900,0],
-    correction1 =[3,0,0,0,0,0,0,3,3,0,3],
-    speed1=      [800,2500,1600,1600,1600,1600,1600,2000,800,1600,-800],
-    )
-def mission_code_left_side_1():
-    array(
-    option1=     [1,3,1,3],
-    direction1 = [0,0,0,0],
-    distance1 =  [400,0,500,0],
-    turn_angle1 =[0,-200,0,210],
-    correction1= [0.2,0,0.2,0],
-    speed1 =     [800,1000,-800,800],
-    )
-def mission_code_left_side_2():
-    array(
-    option1=     [1,1],
-    direction1 = [0,0],
-    distance1 =  [1000,1000],
-    turn_angle1 =[0,0],
-    correction1= [3,3],
-    speed1 =     [800,-800],
-    )
-def mission_code_left_side_3():
-    array(
-    option1=     [1,2,1,3,1,2,1,2,1],
-    direction1 = [0,"left",0,0,0,"left",0,"right",0],
-    distance1 =  [685,0,200,0,150,0,50,0,400],
-    turn_angle1 =[0,45,0,600,0,90,0,90,0],
-    correction1= [3,3,3,0,3,3,3,3,3],
-    speed1 =     [800,2000,800,800,-800,2000,800,2000,800],
-    )
-mission_code_left_side_3()
