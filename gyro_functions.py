@@ -37,7 +37,7 @@ def gyro_straight(distance, base_speed=300, gain=3.0):
     while True:
         avg_angle = (abs(left_motor.angle()) + abs(right_motor.angle())) / 2
         if avg_angle >= target_angle:
-            gyro_reset()
+            gyro_reset_to_straight()
             break
 
 
@@ -93,7 +93,7 @@ def gyro_turn(direction, turn_angle=90, max_speed=300, correction=4.0):
             break
 
         # Proportional speed
-        speedy = max(min(error * correction, max_speed), 120)
+        speedy = max(min(error * correction, max_speed), 100)
     
         if direction == "left":
             left_motor.run(-speedy)
