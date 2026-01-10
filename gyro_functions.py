@@ -66,7 +66,7 @@ def gyro_straight(distance, base_speed=300, gain=3.0):
         right_motor.run(right_speed)
 
         wait(10)
-
+    gyro_reset_to_straight()
     left_motor.stop()
     right_motor.stop()
 
