@@ -9,7 +9,7 @@ selected = None
 selected = hub_menu("A", "B", "C", "D", "E")
 while selected != None:
     if selected == "A":
-        mission_code_right_side_1()
+        #ashtons code
         break
     elif selected == "B":
         #functions not yet implemented
