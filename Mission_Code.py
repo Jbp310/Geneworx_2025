@@ -6,6 +6,9 @@ from pybricks.tools import wait
 from gyro_functions import array, gyro_reset_to_straight, gyro_turn, gyro_straight
 from pybricks.parameters import Axis
 hub = PrimeHub()
+left = Motor(Port.A, positive_direction = Direction.COUNTERCLOCKWISE)
+right = Motor(Port.B, positive_direction = Direction.CLOCKWISE)
+move = DriveBase(left, right, 54, 65)
 def mission_code_right_side_1():
       array(
     option1=     [],
@@ -54,17 +57,4 @@ def mission_code_right_side_1():
 
 
 
-def home_transfer_left():
-    gyro_straight(400, 800)
-    gyro_turn('right',45)
-    gyro_straight(175,800)
-    gyro_turn('left',45)
-    gyro_straight(30000,800)
-    print("facing left")
-def home_transfer_right():
-    gyro_straight(400, 800)
-    gyro_turn('left',45)
-    gyro_straight(175,800)
-    gyro_turn('right',45)
-    gyro_straight(30000,800)
-    print("facing right")
+
