@@ -92,7 +92,7 @@ def gyro_turn(direction, turn_angle=90, max_speed=300, correction=4.0):
         if error <= 1:
             break
 
-        # Proportional speed
+  
         speedy = max(min(error * correction, max_speed), 100)
     
         if direction == "left":

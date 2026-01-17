@@ -3,7 +3,7 @@ from pybricks.pupdevices import Motor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, hub_menu
-from Mission_Code import mission_code_left_side_1,mission_code_left_side_2, mission_code_left_side_3,mission_code_right_side_1
+from Mission_Code import mission_code_left_side_1,mission_code_left_side_2, mission_code_left_side_3
 #MAKE SURE IN THE FILE YOU'RE IMPORTING ONLY DEFINES FUNCTIONS, IMPORTING WILL ACtuaLLY RUN THE WHOLE FILE BEFORE RUNNING THE CODE ON THIS FILE
 selected = None
 selected = hub_menu("A", "B", "C", "D", "E")
