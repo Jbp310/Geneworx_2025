@@ -4,19 +4,28 @@ from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait
 
-# -------------------------------
-# HUB AND MOTORS
-# -------------------------------
+
+
+    
 hub = PrimeHub()
 attachment_motor = Motor(Port.F, positive_direction=Direction.CLOCKWISE)
 left_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)
-
 robot = DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=110)
+def angle_adjust(angle):
+    if angle > 0:
+        return angle - angle/90 * 15
+    elif angle < 0:
+        return angle+ angle/90 * 15
+def beep():
+    hub.speaker.beep(500)
+    print("hi")
 def i2m(inches):
     """Convert inches to mm for DriveBase."""
     return inches * 25.4
-
+def gyro_reset_to_straight():
+    current = hub.imu.heading()
+    robot.turn(angle_adjust(-current))
 def gyro_straight(distance, base_speed=300, gain=3.0):
     # Convert mm -> motor degrees (≈ 360° per 56 mm wheel)
     wheel_circ = 56 * 3.1416
@@ -28,6 +37,7 @@ def gyro_straight(distance, base_speed=300, gain=3.0):
     while True:
         avg_angle = (abs(left_motor.angle()) + abs(right_motor.angle())) / 2
         if avg_angle >= target_angle:
+            gyro_reset_to_straight()
             break
 
 
@@ -83,14 +93,14 @@ def gyro_turn(direction, turn_angle=90, max_speed=300, correction=4.0):
             break
 
         # Proportional speed
-        speed = max(min(error * correction, max_speed), 80)
+        speedy = max(min(error * correction, max_speed), 100)
     
         if direction == "left":
-            left_motor.run(-speed)
-            right_motor.run(speed)
+            left_motor.run(-speedy)
+            right_motor.run(speedy)
         elif direction == "right":
-            left_motor.run(speed)
-            right_motor.run(-speed)
+            left_motor.run(speedy)
+            right_motor.run(-speedy)
 
         wait(10)
 
@@ -111,9 +121,9 @@ turn_angle1 = []
 correction1 = []
 speed1 = []
 def array(option1 ,direction1, distance1,turn_angle1,correction1,speed1):
-    #option 1 is straight and option 2 is turn
+    #option 1 is straight and option 2 is turn, option 3 is attachment motor
     
-    array_length = len(option1)
+    array_length = len(option1) 
     x = 0
     while True: 
         if array_length == x :
@@ -133,11 +143,3 @@ def array(option1 ,direction1, distance1,turn_angle1,correction1,speed1):
         x = x + 1
     
 #run function
-array(
-option1 =    [1,3,3,3,3,3,3],
-direction1 = [0,0,0,0,0,0,0], 
-distance1 =  [350,0,0,0,0,0,0],
-turn_angle1 =[0,-690,690,-690,690,-690,900],
-correction1 =[3,0,0,0,0,0,0],
-speed1=      [800,1600,1600,1600,1600,1600,1600],
-)
