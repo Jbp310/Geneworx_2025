@@ -19,11 +19,16 @@ def i2m(inches) :
 
 x = 0
 
-move.straight(i2m(8))
-move.turn(agl(-92))
-move.straight(i2m(28.5))
-move.turn(agl(-30))
+move.straight(i2m(10))
+move.turn(agl(-78))
+move.straight(i2m(25))
+move.turn(agl(-47))
+move.straight(i2m(-3))
+move.turn(agl(-45))
 while x < 9:
-    move.straight(i2m(-2))
-    move.straight(i2m(2))
+    move.turn(agl(45))
+    move.turn(agl(-45))
+    move.turn(agl(45))
+    move.turn(agl(-45))
+    move.straight(i2m(-1))
     x = x + 1
